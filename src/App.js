@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Menu, Icon} from 'antd';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [selectedMenuItem, setSelectedMenuItem] = useState('home');
+
+    const componentsSwitch = (key) => {
+        switch(key) {
+            case 'home':
+                return (<h1>home</h1>);
+            case 'portfolio':
+                return (<h1>portfolio</h1>);
+            default:
+                break;
+        }
+    };
+
+    return (
+        <div className="App">
+            <Menu 
+                selectedKeys={selectedMenuItem}
+                onClick={(e) => setSelectedMenuItem(e.key)}
+                mode="inline"
+                style={{ width: 128 }}
+            >
+                    <Menu.Item key="home"><Icon type="home" /></Menu.Item>
+                    <Menu.Item key="portfolio"><Icon type="folder" /></Menu.Item>
+
+
+            </Menu>
+            <div>
+                {componentsSwitch(selectedMenuItem)}
+            </div>
+        </div>
+    );
 }
 
 export default App;
