@@ -38,3 +38,13 @@
     transform: rotate(360deg);
   }
 }
+
+.logo-image {
+    width:100%;
+    height:100%;
+    margin-bottom:50px;
+}
+
+.logo-item {
+    margin-bottom:100% !important;
+}

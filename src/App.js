@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Menu, Icon} from 'antd';
+import {Menu, Icon, Layout, Avatar} from 'antd';
+import logo from "./as.png"
+import HomePage from './HomePage.js';
+
+
+const { Header, Content, Sider } = Layout;
 
 function App() {
 
     const [selectedMenuItem, setSelectedMenuItem] = useState('home');
 
-    const componentsSwitch = (key) => {
+    const switchMenuItem = (key) => {
         switch(key) {
             case 'home':
-                return (<h1>home</h1>);
+                return <HomePage />
             case 'portfolio':
                 return (<h1>portfolio</h1>);
             default:
@@ -20,20 +24,29 @@ function App() {
 
     return (
         <div className="App">
-            <Menu 
-                selectedKeys={selectedMenuItem}
-                onClick={(e) => setSelectedMenuItem(e.key)}
-                mode="inline"
-                style={{ width: 128 }}
-            >
-                    <Menu.Item key="home"><Icon type="home" /></Menu.Item>
-                    <Menu.Item key="portfolio"><Icon type="folder" /></Menu.Item>
+            <Layout>
+                <Sider>
+                    <Menu 
+                        selectedKeys={selectedMenuItem}
+                        onClick={(e) => setSelectedMenuItem(e.key)}
+                        mode="inline"
+                        style={{ width: 128 }}
+                    >
+                            <Menu.Item className="logo-item"><img src={logo} width="128" height="64" className="logo-image"/></Menu.Item>
+                            <Menu.Item key="home"><Icon type="home" /></Menu.Item>
+                            <Menu.Item key="portfolio"><Icon type="folder" /></Menu.Item>
 
 
-            </Menu>
-            <div>
-                {componentsSwitch(selectedMenuItem)}
-            </div>
+                    </Menu>
+                </Sider>
+                <Content>
+
+                    <div>
+                        {switchMenuItem(selectedMenuItem)}
+                    </div>
+                </Content>
+ 
+            </Layout>
         </div>
     );
 }
